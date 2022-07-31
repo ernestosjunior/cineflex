@@ -6,11 +6,13 @@ interface BaseLayoutProps {
 }
 
 const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
+  const path = window.location.pathname;
+  const hasFooter = path.includes("/sessoes") || path.includes("/assentos");
   return (
     <Container>
       <Header>CINEFLEX</Header>
       <Content>{children}</Content>
-      <Footer>Este é o footer</Footer>
+      {hasFooter && <Footer>Este é o footer</Footer>}
     </Container>
   );
 };

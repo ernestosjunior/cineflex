@@ -9,6 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/sessoes/:idFilme" />
         </Routes>
       </BrowserRouter>
     </BaseLayout>

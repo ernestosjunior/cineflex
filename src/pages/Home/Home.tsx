@@ -6,7 +6,7 @@ import { CardMovie } from "../../components";
 import { axiosInstance } from "../../service/api";
 
 type Movie = {
-  id: string;
+  id: number;
   posterURL: string;
 }[];
 
@@ -22,12 +22,14 @@ const HomePage = () => {
   }, []);
 
   const navigate = useNavigate();
+  const path = window.location.pathname;
+  const hasFooter = path.includes("/sessoes") || path.includes("/assentos");
 
   return (
     <>
       <Title>Selecione o filme</Title>
       <Suspense fallback={"Loading..."}>
-        <Movies>
+        <Movies hasFooter={hasFooter}>
           {movies.map((moovie) => (
             <CardMovie
               srcImage={moovie.posterURL}
