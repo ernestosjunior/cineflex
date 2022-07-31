@@ -1,5 +1,7 @@
+import { BaseLayout } from "./containers";
+
 function App() {
-  return <></>;
+  return <BaseLayout></BaseLayout>;
 }
 
 export default App;
