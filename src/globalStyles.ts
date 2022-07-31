@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -51,6 +51,16 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+`;
+
+export const Title = styled.h1`
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+  color: #293845;
+  padding: 8%;
+  text-align: center;
 `;
 
 export default GlobalStyle;
