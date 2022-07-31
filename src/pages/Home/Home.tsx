@@ -4,6 +4,7 @@ import { Title } from "../../globalStyles";
 import { Movies } from "./styles";
 import { CardMovie } from "../../components";
 import { axiosInstance } from "../../service/api";
+import { hasFooter } from "../../utils/hasFooter";
 
 type Movie = {
   id: number;
@@ -28,13 +29,11 @@ const HomePage: React.FC<HomePageProps> = ({ setFooter }) => {
   }, []);
 
   const navigate = useNavigate();
-  const path = window.location.pathname;
-  const hasFooter = path.includes("/sessoes") || path.includes("/assentos");
 
   return (
     <>
       <Title>Selecione o filme</Title>
-      <Movies hasFooter={hasFooter}>
+      <Movies hasFooter={hasFooter()}>
         {movies.map((moovie) => (
           <CardMovie
             srcImage={moovie.posterURL}

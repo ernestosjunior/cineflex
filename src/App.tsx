@@ -5,6 +5,7 @@ import { HomePage, SessionPage } from "./pages";
 
 function App() {
   const [hasFooter, setFooter] = useState(true);
+
   return (
     <BaseLayout hasFooter={hasFooter}>
       <BrowserRouter>
