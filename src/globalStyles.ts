@@ -61,7 +61,7 @@ export const Title = styled.h1`
   color: #293845;
   padding: 4%;
   text-align: center;
-  margin-top: 67px;
+  margin-top: 57px;
 `;
 
 export const Button = styled.button`

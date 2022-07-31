@@ -32,7 +32,7 @@ function App() {
     }
     return setFields((prev) => ({ ...prev, [field]: value }));
   };
-  console.log(fields);
+
   return (
     <BrowserRouter>
       <BaseLayout hasFooter={hasFooter} fields={fields}>
