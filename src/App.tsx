@@ -4,6 +4,7 @@ import { BaseLayout } from "./containers";
 import { HomePage, SessionPage, SeatPage, SuccessPage } from "./pages";
 
 export type Fields = {
+  movieImg: string;
   movie: string;
   session: string;
   seats: number[];
@@ -13,6 +14,7 @@ export type Fields = {
 
 function App() {
   const [fields, setFields] = useState<Fields>({
+    movieImg: "",
     movie: "",
     session: "",
     seats: [],
@@ -33,7 +35,7 @@ function App() {
   console.log(fields);
   return (
     <BrowserRouter>
-      <BaseLayout hasFooter={hasFooter}>
+      <BaseLayout hasFooter={hasFooter} fields={fields}>
         <Routes>
           <Route
             path="/"

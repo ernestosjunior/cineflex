@@ -41,6 +41,7 @@ const HomePage: React.FC<HomePageProps> = ({ setFooter, handleFields }) => {
             srcImage={movie.posterURL}
             onClick={() => {
               handleFields("movie", movie.title);
+              handleFields("movieImg", movie.posterURL);
               navigate(`../sessoes/${movie.id}`);
             }}
           />
