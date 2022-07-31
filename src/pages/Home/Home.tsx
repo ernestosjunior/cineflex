@@ -9,13 +9,15 @@ import { hasFooter } from "../../utils/hasFooter";
 type Movie = {
   id: number;
   posterURL: string;
+  title: string;
 }[];
 
 interface HomePageProps {
   setFooter: (state: boolean) => void;
+  handleFields: (field: string, value: string) => void;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ setFooter }) => {
+const HomePage: React.FC<HomePageProps> = ({ setFooter, handleFields }) => {
   const [movies, setMovies] = useState<Movie>([]);
 
   useEffect(() => {
@@ -34,10 +36,13 @@ const HomePage: React.FC<HomePageProps> = ({ setFooter }) => {
     <>
       <Title>Selecione o filme</Title>
       <Movies hasFooter={hasFooter()}>
-        {movies.map((moovie) => (
+        {movies.map((movie) => (
           <CardMovie
-            srcImage={moovie.posterURL}
-            onClick={() => navigate(`../sessoes/${moovie.id}`)}
+            srcImage={movie.posterURL}
+            onClick={() => {
+              handleFields("movie", movie.title);
+              navigate(`../sessoes/${movie.id}`);
+            }}
           />
         ))}
       </Movies>

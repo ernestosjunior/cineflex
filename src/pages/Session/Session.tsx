@@ -12,6 +12,7 @@ import {
 import { hasFooter } from "../../utils/hasFooter";
 interface SessionPageProps {
   setFooter: (state: boolean) => void;
+  handleFields: (field: string, value: string) => void;
 }
 
 type Session = {
@@ -20,14 +21,19 @@ type Session = {
   showtimes: { name: string; id: number }[];
 }[];
 
-const Buttons: React.FC<any> = ({ showtimes = [] }) => {
+const Buttons: React.FC<any> = ({ showtimes = [], handleFields, date }) => {
   const navigate = useNavigate();
   if (!showtimes.length) return null;
 
   return (
     <ContainerButtons>
       {showtimes.map((time: any) => (
-        <Button onClick={() => navigate(`/assentos/${time.id}`)}>
+        <Button
+          onClick={() => {
+            handleFields("session", `${date} ${time.name}`);
+            navigate(`../assentos/${time.id}`);
+          }}
+        >
           {time.name}
         </Button>
       ))}
@@ -35,17 +41,20 @@ const Buttons: React.FC<any> = ({ showtimes = [] }) => {
   );
 };
 
-const SessionPage: React.FC<SessionPageProps> = ({ setFooter }) => {
+const SessionPage: React.FC<SessionPageProps> = ({
+  setFooter,
+  handleFields,
+}) => {
   const [sessions, setSessions] = useState<Session>([]);
-  const { idFilme } = useParams();
+  const { idMovie } = useParams();
 
   useEffect(() => {
     setFooter(true);
-    const fetchMovies = async () => {
-      const res = await axiosInstance.get(`/movies/${idFilme}/showtimes`);
+    const fetchSessions = async () => {
+      const res = await axiosInstance.get(`/movies/${idMovie}/showtimes`);
       setSessions(res.data.days);
     };
-    fetchMovies();
+    fetchSessions();
     // eslint-disable-next-line
   }, []);
 
@@ -55,7 +64,11 @@ const SessionPage: React.FC<SessionPageProps> = ({ setFooter }) => {
       {sessions.map((session: any) => (
         <ContainerDay>
           <Day>{`${session.weekday} - ${session.date}`}</Day>
-          <Buttons showtimes={session.showtimes} />
+          <Buttons
+            showtimes={session.showtimes}
+            handleFields={handleFields}
+            date={session.date}
+          />
         </ContainerDay>
       ))}
     </Sessions>

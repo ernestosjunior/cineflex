@@ -1,23 +1,61 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BaseLayout } from "./containers";
-import { HomePage, SessionPage } from "./pages";
+import { HomePage, SessionPage, SeatPage } from "./pages";
+
+type Fields = {
+  movie: string;
+  session: string;
+  seats: number[];
+  cpf: string;
+  name: string;
+};
 
 function App() {
-  const [hasFooter, setFooter] = useState(true);
+  const [fields, setFields] = useState<Fields>({
+    movie: "",
+    session: "",
+    seats: [],
+    cpf: "",
+    name: "",
+  });
+  const [hasFooter, setFooter] = useState(false);
 
+  const handleFields = (field: any, value: any) => {
+    if (field === "seats") {
+      return setFields((prev) => ({
+        ...prev,
+        [field]: [...prev.seats, value],
+      }));
+    }
+    return setFields((prev) => ({ ...prev, [field]: value }));
+  };
+  console.log(fields);
   return (
-    <BaseLayout hasFooter={hasFooter}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <BaseLayout hasFooter={hasFooter}>
         <Routes>
-          <Route path="/" element={<HomePage setFooter={setFooter} />} />
           <Route
-            path="/sessoes/:idFilme"
-            element={<SessionPage setFooter={setFooter} />}
+            path="/"
+            element={
+              <HomePage handleFields={handleFields} setFooter={setFooter} />
+            }
+          />
+          <Route
+            path="/sessoes/:idMovie"
+            element={
+              <SessionPage setFooter={setFooter} handleFields={handleFields} />
+            }
+          />
+          <Route
+            path="/assentos/:idSession"
+            element={
+              <SeatPage handleFields={handleFields} setFooter={setFooter} />
+            }
           />
         </Routes>
-      </BrowserRouter>
-    </BaseLayout>
+      </BaseLayout>
+    </BrowserRouter>
   );
 }
 

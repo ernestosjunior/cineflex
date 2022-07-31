@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Header, Footer, Content } from "./styles";
 
 interface BaseLayoutProps {
@@ -7,9 +8,11 @@ interface BaseLayoutProps {
 }
 
 const BaseLayout: React.FC<BaseLayoutProps> = ({ children, hasFooter }) => {
+  const navigate = useNavigate();
+
   return (
     <Container>
-      <Header>CINEFLEX</Header>
+      <Header onClick={() => navigate("../")}>CINEFLEX</Header>
       <Content>{children}</Content>
       {hasFooter && <Footer>Este é o footer</Footer>}
     </Container>
