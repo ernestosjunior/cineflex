@@ -11,6 +11,7 @@ import {
   ContainerTextFooter,
 } from "./styles";
 import { Fields } from "../../App";
+import { ReactComponent as ArrowIcon } from "../../assets/arrow-back.svg";
 
 interface BaseLayoutProps {
   children?: React.ReactNode;
@@ -27,7 +28,13 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
 
   return (
     <Container>
-      <Header onClick={() => navigate("../")}>CINEFLEX</Header>
+      <Header>
+        <ArrowIcon
+          style={{ width: "32px", position: "absolute", left: "4%" }}
+          onClick={() => navigate(-1)}
+        />
+        <span onClick={() => navigate("../")}>CINEFLEX</span>
+      </Header>
       <Content>{children}</Content>
       {hasFooter && (
         <Footer>
