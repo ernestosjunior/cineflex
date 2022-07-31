@@ -36,6 +36,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ fields, setFooter }) => {
     };
     setLoading(false);
     sendToApi();
+    // eslint-disable-next-line
   }, []);
 
   return (
