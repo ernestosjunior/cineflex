@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BaseLayout } from "./containers";
-import { HomePage } from "./pages";
+import { HomePage, SessionPage } from "./pages";
 
 function App() {
+  const [hasFooter, setFooter] = useState(true);
   return (
-    <BaseLayout>
+    <BaseLayout hasFooter={hasFooter}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/sessoes/:idFilme" />
+          <Route path="/" element={<HomePage setFooter={setFooter} />} />
+          <Route
+            path="/sessoes/:idFilme"
+            element={<SessionPage setFooter={setFooter} />}
+          />
         </Routes>
       </BrowserRouter>
     </BaseLayout>

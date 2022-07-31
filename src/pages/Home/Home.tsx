@@ -1,4 +1,4 @@
-import { Suspense, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Title } from "../../globalStyles";
 import { Movies } from "./styles";
@@ -10,15 +10,21 @@ type Movie = {
   posterURL: string;
 }[];
 
-const HomePage = () => {
+interface HomePageProps {
+  setFooter: (state: boolean) => void;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ setFooter }) => {
   const [movies, setMovies] = useState<Movie>([]);
 
   useEffect(() => {
+    setFooter(false);
     const fetchMovies = async () => {
       const res = await axiosInstance.get("/movies");
       setMovies(res.data);
     };
     fetchMovies();
+    // eslint-disable-next-line
   }, []);
 
   const navigate = useNavigate();
@@ -28,16 +34,14 @@ const HomePage = () => {
   return (
     <>
       <Title>Selecione o filme</Title>
-      <Suspense fallback={"Loading..."}>
-        <Movies hasFooter={hasFooter}>
-          {movies.map((moovie) => (
-            <CardMovie
-              srcImage={moovie.posterURL}
-              onClick={() => navigate(`../sessoes/${moovie.id}}`)}
-            />
-          ))}
-        </Movies>
-      </Suspense>
+      <Movies hasFooter={hasFooter}>
+        {movies.map((moovie) => (
+          <CardMovie
+            srcImage={moovie.posterURL}
+            onClick={() => navigate(`../sessoes/${moovie.id}`)}
+          />
+        ))}
+      </Movies>
     </>
   );
 };

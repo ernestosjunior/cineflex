@@ -3,11 +3,10 @@ import { Container, Header, Footer, Content } from "./styles";
 
 interface BaseLayoutProps {
   children?: React.ReactNode;
+  hasFooter: boolean;
 }
 
-const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
-  const path = window.location.pathname;
-  const hasFooter = path.includes("/sessoes") || path.includes("/assentos");
+const BaseLayout: React.FC<BaseLayoutProps> = ({ children, hasFooter }) => {
   return (
     <Container>
       <Header>CINEFLEX</Header>
