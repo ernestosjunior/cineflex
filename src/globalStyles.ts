@@ -59,8 +59,9 @@ export const Title = styled.h1`
   line-height: 28px;
   letter-spacing: 0.04em;
   color: #293845;
-  padding: 8%;
+  padding: 4%;
   text-align: center;
+  margin-top: 67px;
 `;
 
 export default GlobalStyle;
