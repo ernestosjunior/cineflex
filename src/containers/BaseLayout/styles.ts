@@ -23,7 +23,6 @@ export const Header = styled.header`
   font-size: 34px;
   line-height: 40px;
   cursor: pointer;
-  position: relative;
 `;
 
 export const Content = styled.section`

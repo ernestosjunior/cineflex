@@ -21,7 +21,12 @@ type Session = {
   showtimes: { name: string; id: number }[];
 }[];
 
-const Buttons: React.FC<any> = ({ showtimes = [], handleFields, date }) => {
+const Buttons: React.FC<any> = ({
+  showtimes = [],
+  handleFields,
+  date,
+  weekday,
+}) => {
   const navigate = useNavigate();
   if (!showtimes.length) return null;
 
@@ -30,6 +35,7 @@ const Buttons: React.FC<any> = ({ showtimes = [], handleFields, date }) => {
       {showtimes.map((time: any) => (
         <Button
           onClick={() => {
+            handleFields("sessionDay", `${weekday} ${time.name}`);
             handleFields("session", `${date} ${time.name}`);
             navigate(`../assentos/${time.id}`);
           }}
@@ -68,6 +74,7 @@ const SessionPage: React.FC<SessionPageProps> = ({
             showtimes={session.showtimes}
             handleFields={handleFields}
             date={session.date}
+            weekday={session.weekday}
           />
         </ContainerDay>
       ))}

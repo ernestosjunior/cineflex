@@ -43,7 +43,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
           </ContainerImg>
           <ContainerTextFooter>
             <FooterText>{fields.movie}</FooterText>
-            <FooterText>{fields.session}</FooterText>
+            <FooterText>{fields.sessionDay}</FooterText>
           </ContainerTextFooter>
         </Footer>
       )}

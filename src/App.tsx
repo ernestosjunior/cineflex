@@ -7,6 +7,7 @@ export type Fields = {
   movieImg: string;
   movie: string;
   session: string;
+  sessionDay: string;
   seats: number[];
   cpf: string;
   name: string;
@@ -17,6 +18,7 @@ function App() {
     movieImg: "",
     movie: "",
     session: "",
+    sessionDay: "",
     seats: [],
     cpf: "",
     name: "",
