@@ -16,6 +16,7 @@ export const ContainerPage = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 8vh;
 `;
 
 export const SuccessTitle = styled.h1`
