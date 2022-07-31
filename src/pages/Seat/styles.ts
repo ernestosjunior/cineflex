@@ -31,7 +31,7 @@ export const SeatContainer = styled.main<Props>`
 export const Button = styled.button`
   all: unset;
   cursor: pointer;
-  background: #e8833a;
+  background: ${(props) => (props.disabled ? "#DFE6ED" : "#e8833a")};
   border-radius: 3px;
   width: 225px;
   height: 42px;
@@ -40,6 +40,6 @@ export const Button = styled.button`
   line-height: 21px;
   text-align: center;
   letter-spacing: 0.04em;
-  color: #ffffff;
+  color: ${(props) => (props.disabled ? "#808F9D" : "#ffffff")};
   margin-top: 57px;
 `;

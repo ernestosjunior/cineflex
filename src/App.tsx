@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BaseLayout } from "./containers";
 import { HomePage, SessionPage, SeatPage } from "./pages";
 
-type Fields = {
+export type Fields = {
   movie: string;
   session: string;
   seats: number[];
@@ -50,7 +50,11 @@ function App() {
           <Route
             path="/assentos/:idSession"
             element={
-              <SeatPage handleFields={handleFields} setFooter={setFooter} />
+              <SeatPage
+                fields={fields}
+                handleFields={handleFields}
+                setFooter={setFooter}
+              />
             }
           />
         </Routes>

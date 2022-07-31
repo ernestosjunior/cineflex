@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Title } from "../../globalStyles";
 import { axiosInstance } from "../../service/api";
 import { SeatsContainer, Form, SeatContainer, Button } from "./styles";
 import { SeatComponent, SeatSubtitle, InputComponent } from "../../components";
 import { hasFooter } from "../../utils/hasFooter";
+import { Fields } from "../../App";
 
 interface SeatPageProps {
+  fields: Fields;
   handleFields: (field: string, value: string) => void;
   setFooter: (state: boolean) => void;
 }
 
-const SeatPage: React.FC<SeatPageProps> = ({ handleFields, setFooter }) => {
+const SeatPage: React.FC<SeatPageProps> = ({
+  handleFields,
+  setFooter,
+  fields,
+}) => {
   const [seats, setSeats] = useState([]);
   const { idSession } = useParams();
+  const navigate = useNavigate();
 
   const inputs = [
     {
@@ -38,6 +45,8 @@ const SeatPage: React.FC<SeatPageProps> = ({ handleFields, setFooter }) => {
     // eslint-disable-next-line
   }, []);
 
+  const isButtonDisabled = !fields.seats.length || !fields.name || !fields.cpf;
+
   return (
     <SeatContainer hasFooter={hasFooter()}>
       <Title>{`Selecione o(s) assento(s)`}</Title>
@@ -61,7 +70,12 @@ const SeatPage: React.FC<SeatPageProps> = ({ handleFields, setFooter }) => {
             onChange={handleFields}
           />
         ))}
-        <Button>Reservar assento(s)</Button>
+        <Button
+          disabled={isButtonDisabled}
+          onClick={() => navigate("../sucesso")}
+        >
+          Reservar assento(s)
+        </Button>
       </Form>
     </SeatContainer>
   );
