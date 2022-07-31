@@ -19,8 +19,16 @@ export const Seat = styled.button<Props>`
   font-size: 11px;
   line-height: 13px;
   background: ${(props) =>
-    props.isAvailable ? "#FBE192" : props.selected ? "#8DD7CF" : "#C3CFD9"};
+    props.selected && props.isAvailable
+      ? "#8DD7CF"
+      : !props.isAvailable
+      ? "#FBE192"
+      : "#C3CFD9"};
   border: 1px solid
     ${(props) =>
-      props.isAvailable ? "#F7C52B" : props.selected ? "#1AAE9E" : "#7B8B99"}; ;
+      props.selected && props.isAvailable
+        ? "#1AAE9E"
+        : !props.isAvailable
+        ? "#F7C52B"
+        : "#808F9D"};
 `;

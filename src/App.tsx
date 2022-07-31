@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BaseLayout } from "./containers";
-import { HomePage, SessionPage, SeatPage } from "./pages";
+import { HomePage, SessionPage, SeatPage, SuccessPage } from "./pages";
 
 export type Fields = {
   movie: string;
@@ -56,6 +56,10 @@ function App() {
                 setFooter={setFooter}
               />
             }
+          />
+          <Route
+            path="/sucesso"
+            element={<SuccessPage fields={fields} setFooter={setFooter} />}
           />
         </Routes>
       </BaseLayout>

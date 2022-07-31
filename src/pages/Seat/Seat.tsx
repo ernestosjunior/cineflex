@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Title } from "../../globalStyles";
+import { Title, Button } from "../../globalStyles";
 import { axiosInstance } from "../../service/api";
-import { SeatsContainer, Form, SeatContainer, Button } from "./styles";
+import { SeatsContainer, Form, SeatContainer } from "./styles";
 import { SeatComponent, SeatSubtitle, InputComponent } from "../../components";
 import { hasFooter } from "../../utils/hasFooter";
 import { Fields } from "../../App";

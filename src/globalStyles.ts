@@ -64,4 +64,20 @@ export const Title = styled.h1`
   margin-top: 67px;
 `;
 
+export const Button = styled.button`
+  all: unset;
+  cursor: pointer;
+  background: ${(props) => (props.disabled ? "#DFE6ED" : "#e8833a")};
+  border-radius: 3px;
+  width: 225px;
+  height: 42px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: ${(props) => (props.disabled ? "#808F9D" : "#ffffff")};
+  margin-top: 57px;
+`;
+
 export default GlobalStyle;
