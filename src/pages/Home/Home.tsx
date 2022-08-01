@@ -21,6 +21,7 @@ const HomePage: React.FC<HomePageProps> = ({ setFooter, handleFields }) => {
   const [movies, setMovies] = useState<Movie>([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setFooter(false);
     const fetchMovies = async () => {
       const res = await axiosInstance.get("/movies");

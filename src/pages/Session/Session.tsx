@@ -55,6 +55,7 @@ const SessionPage: React.FC<SessionPageProps> = ({
   const { idMovie } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setFooter(true);
     const fetchSessions = async () => {
       const res = await axiosInstance.get(`/movies/${idMovie}/showtimes`);

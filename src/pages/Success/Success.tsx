@@ -24,6 +24,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ fields, setFooter }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setLoading(true);
     setFooter(false);
     const sendToApi = async () => {

@@ -22,6 +22,17 @@ const SeatPage: React.FC<SeatPageProps> = ({
   const { idSession } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setFooter(true);
+    const fetchSeats = async () => {
+      const res = await axiosInstance.get(`/showtimes/${idSession}/seats`);
+      setSeats(res.data.seats);
+    };
+    fetchSeats();
+    // eslint-disable-next-line
+  }, []);
+
   const inputs = [
     {
       label: "Nome do comprador:",
@@ -34,16 +45,6 @@ const SeatPage: React.FC<SeatPageProps> = ({
       placeholder: "Digite seu CPF...",
     },
   ];
-
-  useEffect(() => {
-    setFooter(true);
-    const fetchSeats = async () => {
-      const res = await axiosInstance.get(`/showtimes/${idSession}/seats`);
-      setSeats(res.data.seats);
-    };
-    fetchSeats();
-    // eslint-disable-next-line
-  }, []);
 
   const isButtonDisabled = !fields.seats.length || !fields.name || !fields.cpf;
 
