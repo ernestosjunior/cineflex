@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const SeatsContainer = styled.section`
-  width: 100%;
+  width: 90vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -26,4 +26,8 @@ export const Form = styled.section`
 
 export const SeatContainer = styled.main<Props>`
   margin-bottom: ${(props) => (!props.hasFooter ? "8vh" : "24vh")};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

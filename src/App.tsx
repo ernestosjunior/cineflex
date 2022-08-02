@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BaseLayout } from "./containers";
 import { HomePage, SessionPage, SeatPage, SuccessPage } from "./pages";
@@ -12,18 +12,23 @@ export type Fields = {
   cpf: string;
   name: string;
 };
+export const initialState = {
+  movieImg: "",
+  movie: "",
+  session: "",
+  sessionDay: "",
+  seats: [],
+  cpf: "",
+  name: "",
+};
 
 function App() {
-  const [fields, setFields] = useState<Fields>({
-    movieImg: "",
-    movie: "",
-    session: "",
-    sessionDay: "",
-    seats: [],
-    cpf: "",
-    name: "",
-  });
+  const [fields, setFields] = useState<Fields>(initialState);
   const [hasFooter, setFooter] = useState(false);
+
+  useLayoutEffect(() => {
+    setFields((prev) => ({ ...prev, session: "", sessionDay: "" }));
+  }, [fields.movie]);
 
   const handleFields = (field: any, value: any) => {
     if (field === "seats") {
